@@ -38,7 +38,8 @@ public class FoodShopController {
     * 식당 저장
     * */
     @PostMapping("/shop/save")
-    public FoodShop saveShop(@RequestBody FoodShopDto foodShopDto) {
-        return foodShopService.saveShop(foodShopDto);
+    public ResponseEntity<FoodShop> saveShop(@RequestBody FoodShopDto foodShopDto) {
+        FoodShop saveShop = foodShopService.saveShop(foodShopDto);
+        return new ResponseEntity<>(saveShop, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 }

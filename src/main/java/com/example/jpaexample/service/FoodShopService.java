@@ -27,7 +27,7 @@ public class FoodShopService {
     * */
     @Transactional
     public FoodShop detailShop(Long seq) {
-        return foodShopRepository.findById(seq).orElseThrow();
+        return foodShopRepository.findById(seq).orElseThrow(() -> new IllegalArgumentException("해당 정보가 없습니다."));
     }
 
     /*

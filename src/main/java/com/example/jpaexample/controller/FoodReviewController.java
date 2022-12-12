@@ -1,14 +1,12 @@
 package com.example.jpaexample.controller;
 
+import com.example.jpaexample.domain.dto.FoodReviewDto;
 import com.example.jpaexample.domain.entity.FoodReview;
 import com.example.jpaexample.service.FoodReviewService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -35,4 +33,14 @@ public class FoodReviewController {
         FoodReview reviewDetailList = foodReviewService.reviewDetailList(seq);
         return new ResponseEntity<>(reviewDetailList, HttpStatus.INTERNAL_SERVER_ERROR);
     }
+
+    /*
+    * 리뷰 저장
+    * */
+    @PostMapping("/review/save")
+    public ResponseEntity<FoodReview> saveReview(@RequestBody FoodReviewDto foodReviewDto) {
+        FoodReview saveReview = foodReviewService.saveReview(foodReviewDto);
+        return new ResponseEntity<>(saveReview, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+
 }

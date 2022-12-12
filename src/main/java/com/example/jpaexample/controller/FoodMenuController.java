@@ -39,7 +39,8 @@ public class FoodMenuController {
     * 메뉴 등록
     * */
     @PostMapping("/menu/save")
-    public FoodMenu saveMenu(@RequestBody FoodMenuDto foodMenuDto) {
-        return foodMenuService.saveMenu(foodMenuDto);
+    public ResponseEntity<FoodMenu> saveMenu(@RequestBody FoodMenuDto foodMenuDto) {
+        FoodMenu saveMenu = foodMenuService.saveMenu(foodMenuDto);
+        return new ResponseEntity<>(saveMenu, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 }

@@ -25,7 +25,7 @@ public class FoodReviewService {
     * 리뷰 개별조회
     * */
     public FoodReview reviewDetailList(Long seq) {
-        FoodReview reviewDetailList = foodReviewRepository.findById(seq).orElseThrow();
+        FoodReview reviewDetailList = foodReviewRepository.findById(seq).orElseThrow(() -> new IllegalArgumentException("해당 정보가 없습니다."));
         return reviewDetailList;
     }
 

@@ -27,7 +27,7 @@ public class FoodMenuService {
     * */
     @Transactional
     public FoodMenu menuDetailList(Long seq) {
-        FoodMenu menuDetailList = foodMenuRepository.findById(seq).orElseThrow();
+        FoodMenu menuDetailList = foodMenuRepository.findById(seq).orElseThrow(() -> new IllegalArgumentException("해당 정보가 없습니다."));
         return menuDetailList;
     }
 
@@ -38,4 +38,5 @@ public class FoodMenuService {
     public FoodMenu saveMenu(FoodMenuDto foodMenuDto) {
         return foodMenuRepository.save(foodMenuDto.toEntity());
     }
+
 }
